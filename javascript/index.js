@@ -37,6 +37,7 @@ function buttonClick() {
         default:
           console.log(buttonInnerHTML, + " Invalid key pressed");
       }
+      removeAnimationClick(buttonInnerHTML);
     });
   }
 };
@@ -81,14 +82,25 @@ function keyPress() {
         let kick = new Audio('sounds/kick-bass.mp3');
         kick.play();
         break;
-      default: console.log('You have pressed an invalid key. Key pressed was ' + keyPressed.key);
+      default:  console.log("Invalid Key pressed. " + keyPressed.key);
+
     }
+    removeAnimationKeyDown(keyPressed)
   });
 };
 keyPress();
 
 
 
+function removeAnimationKeyDown(keyUp) {
+  document.querySelector('.' + keyUp.key).classList.add('pressed');
+  setTimeout(() => { document.querySelector('.' + keyUp.key).classList.remove('pressed');},500)
+}
+
+function removeAnimationClick(removeAnitmation) {
+  document.querySelector('.' + removeAnitmation).classList.add('pressed');
+  setTimeout(()=> {document.querySelector('.' + removeAnitmation).classList.remove('pressed');},500)
+}
 
 
 
